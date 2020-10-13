@@ -1,11 +1,11 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-require('./excel/vendor/autoload.php');
+/*require('./excel/vendor/autoload.php');
 
 use PhpOffice\PhpSpreadsheet\Helper\Sample;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;*/
 // End load library phpspreadsheet
 class Laporan extends MY_Controller {
 
