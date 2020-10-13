@@ -56,7 +56,7 @@ class Pemesanan_model extends CI_Model {
         return $data->result();
     }
     public function getKain(){
-        $this->db->select('mst_jenis.nama as kain,mst_kain.article,mst_kain.harga,mst_kain.id');
+        $this->db->select('mst_jenis.nama as kain,mst_kain.article,mst_kain.id');
         $this->db->from('mst_kain');
            $this->db->join('mst_jenis','mst_kain.kain_id = mst_jenis.id');
         $query = $this->db->get();
@@ -255,11 +255,6 @@ class Pemesanan_model extends CI_Model {
     function get_datatables($nama = "") {
         $this->_get_datatables_query();
         $this->db->order_by('mst_supplier.nama ASC');
-//        if (!empty($nama)) {
-//            $this->db->like("mst_supplier.nama", $nama);
-//        }
-//        if ($_POST['length'] != -1)
-//            $this->db->limit($_POST['length'], $_POST['start']);
         $query = $this->db->get();
         return $query->result();
     }

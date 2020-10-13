@@ -78,18 +78,14 @@ class Pemesanan extends MY_Controller {
         $post = $this->input->post();
         $nama = $post['IDprovinsi'] ? $post['IDprovinsi'] : '';
         $list = $this->pemesanan_model->get_datatables($nama);
-//        echoPre($this->db->last_query());exit;
         $data = array();
-//        $no = $_POST['start'];
         foreach ($list as $dt) {
             $hasil_rupiah = "Rp " . number_format($dt->subtotal,2,',','.');
             $status= ($dt->status == 1) ? "accepted" : "pending";
            $status1= ($dt->status == 0) ? "time" : "check";
            $style= ($dt->status == 0) ? "primary" : "success";
-//            $no++;
             $row = array();
              $kain = $this->pemesanan_model->getDataKain(0, 'all', $dt->id);
-//             echoPre($this->db->last_query());exit;
                 $strkain = "";
                 foreach ($kain as $value) {
 
