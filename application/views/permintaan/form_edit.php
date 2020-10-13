@@ -43,7 +43,7 @@
                                         <option value="0">Pilih Kain</option>
                                         
                                         <?php foreach($kain as $I):?>
-                                             <option value="<?=$I['id']?>" > <?= $I['article'] .'-'. $I['kain']?></option>
+                                             <option value="<?=$I['id']?>" > <?= $I['code'] .'-'. $I['kain']?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </td>
@@ -92,7 +92,7 @@
                                     <select id="id_barang_<?= $no?>"  name="id_barang_<?= $no?>" class="form-control pilih_barang" onchange="getHarga('id_barang_<?= $no?>')">
                                         <option value="0">Pilih Barang</option>
                                        <?php foreach($kain as $I):?>
-                                        <option value="<?=$I['id']?>" <?= $I['id']==$b['id_kain'] ? 'selected' :'';?>><b> <?= $I['article'].' - '.$I['kain']?></b></option>
+                                        <option value="<?=$I['id']?>" <?= $I['id']==$b['id_kain'] ? 'selected' :'';?>><b> <?= $I['code'].' - '.$I['kain']?></b></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </td>
