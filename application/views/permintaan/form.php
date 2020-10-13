@@ -106,7 +106,7 @@
                                              <option value="<?=$I['id']?>" > <?=  $I['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>
-                                </td>
+                                </td><td>
                                 <select id="id_satuan_1"  name="id_satuan_1" class="form-control pilih_satuan">
                                         <option value="0">Pilih Satuan</option>
                                         
