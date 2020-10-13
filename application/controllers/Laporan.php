@@ -80,12 +80,13 @@ class Laporan extends MY_Controller {
         );
         $dt["breadcrumbs"] = $this->setBreadcrumbs($arrBreadcrumbs);
         $dt["title"] = "Laporan";
+        $dt['kain'] = $this->laporan_model->getKain();
         $dt['isi_ringkasan'] = $isi_ringkasan;
         $dt['kode'] = $kode;
         $dt['nomor_surat'] = $nomor_surat;
         $dt["base_url"] = $url;
         $dt['post'] = json_encode($post);
-        $ret = $this->load->view("laporan/laporansurat", $dt, true);
+        $ret = $this->load->view("laporan/content", $dt, true);
         return $ret;
     }
    public function getData(){
