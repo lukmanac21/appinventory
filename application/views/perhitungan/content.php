@@ -31,7 +31,12 @@
                                         </select>
                                     </div>
                                 </div>
-                                                           
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Lead Time</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" placeholder="Lead Time" class="form-control pull-right" name="lead_team"  id="lead_team">
+                                    </div>
+                                </div>                     
                                 <div class="form-group">
                                     <label class="control-label form-label col-sm-3">Tanggal</label>
                                     <div class="col-sm-3">
@@ -57,6 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
+                               
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Permintaan Barang</label>
                                     <div class="col-sm-7">
@@ -109,7 +115,10 @@
                                 <th>Permintaan Barang</th>
                                 <th>Biaya Pesan</th>
                                 <th>Biaya Simpan</th>
-                                <th>Perhitungan EOQ</th>
+                                <th>EOQ</th>
+                                <th>Kebutuhan PerHari</th>
+                                <th>Pesan Kembali</th>
+                                <th>Waktu Pesan</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -93,6 +93,7 @@ function addBarang(){
        lastRow = parseInt(lastRow);
        var nextRow = lastRow+1;
    }
+   $(".select").select2();
     var htmlRow = $("#barang_0").html();
     htmlRow = htmlRow.replace('style="display: none;"', '');
     htmlRow = htmlRow.split("id_barang_0").join("id_barang_"+idRow); 

@@ -20,16 +20,13 @@ $(function() {
          var date1 = $( "#date1" ).val();
          
          if(date1 != false){
-//             alert(date1);
-//            loadDataAgen(id_supplier);
+            $(".pilih_warna").removeAttr("disabled");
             $(".pilih_barang").removeAttr("disabled");
             $("#add_barang").css("display","inline");
             resetBarang();
          }
          else{
-//            $("#alamat").val("");
-//            $("#no_telpon").val("");
-//            $("#nama_supplier").val("");
+            $(".pilih_warna").attr("disabled","disabled");
             $(".pilih_barang").attr("disabled","disabled");
             $("#add_barang").css("display","none");
             resetBarang();
@@ -93,7 +90,8 @@ function addBarang(){
    }
     var htmlRow = $("#barang_0").html();
     htmlRow = htmlRow.replace('style="display: none;"', '');
-    htmlRow = htmlRow.split("id_barang_0").join("id_barang_"+idRow); 
+    htmlRow = htmlRow.split("id_barang_0").join("id_barang_"+idRow);     
+    htmlRow = htmlRow.split("id_warna_0").join("id_warna_"+idRow);
     htmlRow = htmlRow.split("jumlah_0").join("jumlah_"+idRow);
     htmlRow = htmlRow.split("harga_0").join("harga_"+idRow);
     htmlRow = htmlRow.split("total_0").join("total_"+idRow);
@@ -118,6 +116,7 @@ function resetBarang(){
         }
     }
     $("#id_barang_1").val("0");
+    $("#id_warna_1").val("0");
     $("#jumlah_1").val("0");
     $("#harga_1").val("0");
     $("#total_1").val("0");
@@ -144,7 +143,7 @@ function getHarga(row){
             })
             .done(function( msg ) {
                 if(msg != null){
-                    $("#harga_"+indexRow).val(toCurrency(msg.harga));
+                    $("#harga_"+indexRow).val(toCurrency(msg.harga_barang));
                 }
                 else{
                     $("#harga_"+indexRow).val("0");
@@ -170,7 +169,7 @@ function getTotalHargaItem(row){
     var indexRow = row.replace('id_barang_','');
     setTimeout(function (){
        var jumlah = ($("#jumlah_"+indexRow).val() == "") ? 0 : parseFloat($("#jumlah_"+indexRow).val());
-       alert(indexRow);
+       
        if(jumlah < 0){
            alert("Jumlah Kain tidak boleh kurang dari 0");
            $("#jumlah_"+indexRow).val(0);

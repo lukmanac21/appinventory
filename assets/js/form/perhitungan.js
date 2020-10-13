@@ -12,12 +12,12 @@ $(function() {
      $('#date1').datepicker({
       autoclose: true,
 	  format: 'yyyy-mm-dd',
-           daysOfWeekDisabled: [0, 6],
+//           daysOfWeekDisabled: [0, 6],
     });
     $('#date2').datepicker({
       autoclose: true,
 	  format: 'yyyy-mm-dd',
-           daysOfWeekDisabled: [0, 6],
+//           daysOfWeekDisabled: [0, 6],
     });
     $('#formTransaksi').on('keypress', function(e){
         return e.which !== 13;
@@ -46,17 +46,26 @@ function searchHitung(){
                 d.date1 = $('#date1').val();
                 d.date2 = $('#date2').val();
                 d.barang = $('#barang').val();
+                d.lead_team = $('#lead_team').val();
             }
         },
-        columns : [
-            {data : 'nama'},            
-            {data : 'warna'},
-            {data : 'jumlah'},
-            {data : 'harga'},
-            {data : 'biaya_simpan'},            
-            {data : 'action'},
-            
-        ]         
+//        columns : [
+//            {data : 'nama'},            
+//            {data : 'warna'},
+//            {data : 'jumlah'},
+//            {data : 'harga'},
+//            {data : 'biaya_simpan'},            
+//            {data : 'action'},
+//            {data : 'perhitungan'},
+//            
+//        ]      
+            columnDefs: [
+        { 
+            targets : [ -1 ], //last column
+            orderable: false, //set not orderable
+        },
+        ],
+
     });
 }
 function search(){

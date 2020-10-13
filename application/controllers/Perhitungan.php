@@ -61,16 +61,14 @@ class Perhitungan extends MY_Controller {
         }
         $post = array(
              'tanggal' => $tgl,
-        );
-       
+        );       
         $url = $this->base_url."hitung";
         $arrBreadcrumbs = array(
             "Form" => base_url(),
             "Perhitungan" => $url,
             "EOQ" => "#",
-        );
+         );
          $dt['jenis'] = $this->Permintaan_model->getKain();
-//         echoPre($dt['jenis']);exit;
         $dt["breadcrumbs"] = $this->setBreadcrumbs($arrBreadcrumbs);
         $dt["title"] = "Laporan";
         $dt["base_url"] = $url;
@@ -79,25 +77,23 @@ class Perhitungan extends MY_Controller {
         return $ret;
     }
      public function getSearch(){
-        $post = $this->input->post();
-        
+        $post = $this->input->post();        
         $dtStart = $post['date1'];
         $dtEnd = $post['date2'];
         $tgl = array();
         if(!empty($dtStart) || ($dtEnd)){
             $tgl['start'] = $dtStart.' 00:00:00';
             $tgl['end'] = $dtEnd.' 23:59:59';
-        }
-         
+        }         
          $id = $post['barang'];
          $dataSearch = $this->perhitungan_model->getDetail($id,$tgl);
         if(!empty($dataSearch)){ 
-      $callback = array(
-        'status' => 'success', 
-        'biaya_pesan' => $dataSearch->harga, 
-        'biaya' => $dataSearch->biaya, 
-        'permintaan_barang' => $dataSearch->jumlah, 
-      );
+        $callback = array(
+          'status' => 'success', 
+          'biaya_pesan' => $dataSearch->harga, 
+          'biaya' => $dataSearch->biaya, 
+          'permintaan_barang' => $dataSearch->jumlah, 
+        );
     }else{
       $callback = array('status' => 'failed'); // set array status dengan failed
     }
@@ -110,25 +106,56 @@ class Perhitungan extends MY_Controller {
         $id = $post['barang'];
         $dtStart = $post['date1'];
         $dtEnd = $post['date2'];
+        $leadtime = $post['lead_team'];
         $tgl = array();
         if(!empty($dtStart) || ($dtEnd)){
             $tgl['start'] = $dtStart.' 00:00:00';
             $tgl['end'] = $dtEnd.' 23:59:59';
         }
-        $dataTransaksi = $this->perhitungan_model->getDataTrans($tgl,$id);
-        if(!empty($dataTransaksi)){
-        $response = $this->datatables->collection($dataTransaksi)
-      /*  ->addColumn('nama', function($row) {
-            $warna =  $row->nama .' - '. $row->warna;
-            return $warna;
-        })*/
-             ->addColumn('action', function($row) {
-                        $btnAksi = sqrt(2 * $row->jumlah * $row->harga / $row->biaya_simpan);
-                        return $btnAksi;
-                    })
-            ->render();
-        echo json_encode($response);
+       $begin = new DateTime($dtStart);
+        $end = new DateTime($dtEnd);
+
+        $daterange     = new DatePeriod($begin, new DateInterval('P1D'), $end);
+        //mendapatkan range antara dua tanggal dan di looping
+        $i=0;
+        $x     =    0;
+        $end     =    1;
+        $day = "";
+        foreach($daterange as $date){
+            $daterange     = $date->format("Y-m-d");
+            $datetime     = DateTime::createFromFormat('Y-m-d', $daterange);
+            //Convert tanggal untuk mendapatkan nama hari
+            $day         = $datetime->format('D');
+            //Check untuk menghitung yang bukan hari sabtu dan minggu
+            if($day!="Sun" && $day!="Sat") {
+                $x    +=    $end-$i;
+            }
+            $end++;
+            $i++;
+        } 
+        $list = $this->perhitungan_model->get_datatables($tgl,$id);
+        $data = array();
+        foreach ($list as $dt) {
+            $Eoq =  sqrt(2 * $dt->jumlah * $dt->harga / $dt->biaya_simpan);
+            $kebutuhan =  $dt->jumlah / $x;
+//            $no++;
+            $row = array();
+            $row[] = $dt->nama;
+            $row[] = $dt->warna;
+            $row[] = $dt->jumlah;
+            $row[] = $dt->harga;
+            $row[] = $dt->biaya_simpan;
+            $row[] = $Eoq;
+            $row[] = $kebutuhan;
+            $row[] = $kebutuhan * $leadtime;
+            $row[] = $x * $end / $dt->jumlah;
+            $data[] = $row;
         }
+        $output = array(
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
     }
     public function hitung(){
         echoPre($_POST);exit;

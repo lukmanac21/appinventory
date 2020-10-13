@@ -109,7 +109,7 @@
                             </tr>
                             <tr id="barang_0" style="display: none;" data-id="0">
                                 <td>
-                                    <select id="id_barang_0"  name="id_barang_0" class="form-control pilih_barang" onchange="getHarga('id_barang_0')">
+                                    <select id="id_barang_0"  name="id_barang_0" class="form-control pilih_barang select" onchange="getHarga('id_barang_0')">
                                         <option value="0">Pilih Produk</option>
                                         
                                         <?php foreach($produk as $I):?>

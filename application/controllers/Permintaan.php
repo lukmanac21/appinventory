@@ -79,11 +79,9 @@ class Permintaan extends MY_Controller {
         $post = $this->input->post();
         $nama = $post['IDprovinsi'];
         $list = $this->Permintaan_model->get_datatables($nama);
-//        echoPre($this->db->last_query());exit;
         $data = array();
-//        $no = $_POST['start'];
         foreach ($list as $dt) {
-//            $hasil_rupiah = "Rp " . number_format($dt->subtotal,2,',','.');
+           
             $status= ($dt->status == 1) ? "accepted" : "pending";
            $status1= ($dt->status == 0) ? "time" : "check";
            $style= ($dt->status == 0) ? "primary" : "success";
@@ -91,12 +89,11 @@ class Permintaan extends MY_Controller {
       $kain = $this->Permintaan_model->getDataKain(0, 'all', $dt->id);
       $strkain = "";
       foreach ($kain as $value) {
-         
-          $strkain .='<ul style="list-style: none;padding: 0px;"><li><b>'.$value->nama. '</b> : ' .$value->jumlah.'</li>';
+        //$rupiah = "Rp " . number_format($dt->subtotal,2,',','.');
+          $strkain .='<ul style="list-style: none;padding: 0px;"><li>Jenis Kain <b>'.$value->nama. ' </b> Warna <b>'.$value->warna.'</b> Jumlah Permintaan <b>' .$value->jumlah.'</b> Satuan <b>'.$value->satuan.'</b></li>';
       }  
       
             $row = array();
-//            $row[] = $dt->kain;
             $row[] = date('d M Y',  strtotime($dt->tanggal));
              $row[] = $strkain   ;  
             $row[] = $dt->status == 1 ? "<span class='label label-success' title='accepted'><span class='glyphicon glyphicon-check'></span> diTerima</span>" : "<span class='label label-warning' title='pending'><span class='glyphicon glyphicon-time'></span> Tertunda </span>" ;
@@ -162,7 +159,7 @@ class Permintaan extends MY_Controller {
         
         $dt['customer'] = $this->supplier_model->getCust();
         $dt['kain'] = $this->Permintaan_model->getKain();
-        
+        $dt['warna'] = $this->Permintaan_model->getWarna();
         $dt['data'] = $data;
         $dt['base_url'] = $this->base_url;
         if(is_numeric($id)){
@@ -202,9 +199,7 @@ class Permintaan extends MY_Controller {
     }
     public function getHarga($id_barang) {
         header('Content-Type: application/json');
-//        echoPre($id_barang);
         $data = $this->JenisKain_model->getDetail($id_barang);
-//        echopre($data);
         $resData = $data;
         echo json_encode($resData);
     }
@@ -236,6 +231,8 @@ class Permintaan extends MY_Controller {
                    for($i=1; $i <= $index_row;$i++){
                          
                         $id_barang = isset($_POST["id_barang_".$i]) ? trim($_POST["id_barang_".$i]) : '';
+                        $id_warna = isset($_POST["id_warna_".$i]) ? trim($_POST["id_warna_".$i]) : '';
+                        
                         $harga = isset($_POST["harga_".$i]) ? trim($_POST["harga_".$i]) : '';
                         $jumlah = isset($_POST["jumlah_".$i]) ? trim($_POST["jumlah_".$i]) : '';
                         $biaya = isset($_POST["biaya_".$i]) ? trim($_POST["biaya_".$i]) : '';
@@ -244,6 +241,7 @@ class Permintaan extends MY_Controller {
                             $inDetail = array(
                                 "permintaan_id" => $id,
                                 "id_kain" => $id_barang,
+                                "id_warna" => $id_warna,
                                 "jumlah" => $jumlah,
                                 "harga" =>$jumlah  *  filterHarga($harga),
                                 "biaya_simpan" => filterHarga($biaya),
@@ -275,6 +273,8 @@ class Permintaan extends MY_Controller {
                     for($i=1; $i <= $index_row;$i++){
                          
                         $id_barang = isset($_POST["id_barang_".$i]) ? trim($_POST["id_barang_".$i]) : '';
+                        $id_warna = isset($_POST["id_warna_".$i]) ? trim($_POST["id_warna_".$i]) : '';
+                        
                         $harga = isset($_POST["harga_".$i]) ? trim($_POST["harga_".$i]) : '';
                         $jumlah = isset($_POST["jumlah_".$i]) ? trim($_POST["jumlah_".$i]) : '';
                         $biaya = isset($_POST["biaya_".$i]) ? trim($_POST["biaya_".$i]) : '';
@@ -282,6 +282,7 @@ class Permintaan extends MY_Controller {
                             $inDetail = array(
                                 "permintaan_id" => $res['id'],
                                 "id_kain" => $id_barang,
+                                "id_warna" => $id_warna,
                                 "jumlah" => $jumlah,
                                 "harga" => $jumlah  * filterHarga($harga),
                                 "biaya_simpan" => filterHarga($biaya),

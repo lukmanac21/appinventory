@@ -35,6 +35,7 @@
                         <table class="table table-hover table-striped" id="tabel_barang">
                             <tr>
                                 <th style="width:30%">Nama Barang</th>
+                                <th>Warna</th>
                                 <th>Jumlah</th>
                                 <th>Biaya Simpan</th>
                                 <th>Harga Satuan</th>
@@ -47,7 +48,17 @@
                                         <option value="0">Pilih Kain</option>
                                         
                                         <?php foreach($kain as $I):?>
-                                             <option value="<?=$I['id']?>" > <?= $I['article'] .'-'. $I['kain']?></option>
+                                             <option value="<?=$I['id']?>" > <?= $I['code'] .'-'. $I['kain']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <!--input type="text" value="" class="form-control" placeholder="Wa" name="ukuran_0" id="ukuran_0" readonly="readonly"-->
+                                    <select id="id_warna_0"  name="id_warna_0" class="form-control pilih_warna">
+                                        <option value="0">Pilih Warna</option>
+                                        
+                                        <?php foreach($warna as $I):?>
+                                             <option value="<?=$I['id']?>" > <?=  $I['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </td>
@@ -69,10 +80,20 @@
                             </tr>
                             <tr id="barang_1" data-id="1">
                                 <td>
-                                    <select id="id_barang_1"  name="id_barang_1" class="form-control pilih_barang" onchange="getHarga('id_barang_1')" disabled="disabled">
+                                    <select id="id_barang_1"  name="id_barang_1" class="form-control pilih_barang select2" onchange="getHarga('id_barang_1')" disabled="disabled">
                                         <option value="0">Pilih Barang</option>
                                        <?php foreach($kain as $l):?>
-                                        <option value="<?=$l['id']?>" > <b><?= $l['article'] .' - '. $l['kain']?></b></option>
+                                        <option value="<?=$l['id']?>" > <b><?= $l['code'] .' - '. $l['kain']?></b></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <!--input type="text" value="" class="form-control" placeholder="Wa" name="ukuran_0" id="ukuran_0" readonly="readonly"-->
+                                    <select id="id_warna_1"  name="id_warna_1" class="form-control pilih_warna" disabled="disabled">
+                                        <option value="0">Pilih Warna</option>
+                                        
+                                        <?php foreach($warna as $I):?>
+                                             <option value="<?=$I['id']?>" > <?=  $I['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </td>

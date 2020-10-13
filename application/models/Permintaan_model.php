@@ -59,10 +59,12 @@ class Permintaan_model extends CI_Model {
         if (!empty($in)) {
             $this->db->where_in('permintaan_id', $in);
         }
-        $this->db->select('*');
+        $this->db->select('mst_satuan.nama as satuan,mst_warna.nama as warna,mst_jenis.nama,mst_jenis.harga_barang,tr_permintaan_detail.jumlah');
         $this->db->from('tr_permintaan_detail');
-        $this->db->join('mst_kain', 'tr_permintaan_detail.id_kain = mst_kain.id');
-        $this->db->join('mst_jenis', 'mst_kain.kain_id = mst_jenis.id');
+//        $this->db->join('mst_kain', 'tr_permintaan_detail.id_kain = mst_kain.id');
+        $this->db->join('mst_jenis', 'tr_permintaan_detail.id_kain = mst_jenis.id');
+        $this->db->join('mst_warna', 'tr_permintaan_detail.id_warna = mst_warna.id');
+        $this->db->join('mst_satuan', 'mst_jenis.id_satuan = mst_satuan.id');
         if($limit != "all"){
             $this->db->limit($limit);
         }  
@@ -73,10 +75,10 @@ class Permintaan_model extends CI_Model {
         return $data->result();
     }
     public function getKain(){
-        $this->db->select('mst_jenis.nama as kain,mst_kain.article,mst_kain.harga,mst_kain.id,mst_warna.nama as warna');
-        $this->db->from('mst_kain');
-           $this->db->join('mst_jenis','mst_kain.kain_id = mst_jenis.id');
-           $this->db->join('mst_warna','mst_kain.warna_id = mst_warna.id');
+        $this->db->select('mst_jenis.nama as kain,mst_jenis.code,mst_jenis.id');
+        $this->db->from('mst_jenis');
+//           $this->db->join('mst_jenis','mst_kain.kain_id = mst_jenis.id');
+//           $this->db->join('mst_warna','mst_kain.warna_id = mst_warna.id');
         $query = $this->db->get();
         $resVal = "";
         if ($query->num_rows() > 0) {
@@ -277,6 +279,18 @@ class Permintaan_model extends CI_Model {
         }
 
         return $retVal;
+    }
+    public function getWarna(){
+        $this->db->select('*');
+        $this->db->from('mst_warna');
+        $query = $this->db->get();
+        $resVal = "";
+        if ($query->num_rows() > 0) {
+            $resVal = $query->result_array();
+        } else {
+            $resVal = false;
+        }
+        return $resVal;
     }
     public function getBarangDetail($id) {
         
