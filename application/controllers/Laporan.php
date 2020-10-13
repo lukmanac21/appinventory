@@ -26,8 +26,8 @@ class Laporan extends MY_Controller {
     public function index() {
         $user_data = $this->session->get_userdata();
         $id_session = $user_data['user_id'];
-        $status_session = $user_data['user_status'];
-        if(empty($id_session || $status_session)){
+        //$status_session = $user_data['user_status'];
+        if(empty($id_session)){
              redirect();
         }
         $dt = array(
