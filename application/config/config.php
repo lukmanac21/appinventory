@@ -531,7 +531,7 @@ $config['menu_list'] = array(
     "supplier" => array( "init" => "LP", "name" => "Master Data Supllier"),
     "kain" => array( "init" => "PS", "name" => "Master Data Kain"),
  
-//    "code" => array( "init" => "ICD", "name" => "Data ICD"),
+    "laporan" => array( "init" => "LPP", "name" => "Laporan"),
     "satuan" => array( "init" => "ST", "name" => "Master Data Satuan"),
     "produk" => array( "init" => "PR", "name" => "Master Data Produk"),
     
