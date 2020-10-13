@@ -35,7 +35,8 @@
                         <table class="table table-hover table-striped" id="tabel_barang">
                             <tr>
                                 <th style="width:30%">Nama Barang</th>
-                                <th>Warna</th>
+                                <th>Warna</th>                                
+                                <th>Satuan</th>
                                 <th>Jumlah</th>
                                 <th>Biaya Simpan</th>
                                 <th>Harga Satuan</th>
@@ -58,6 +59,15 @@
                                         <option value="0">Pilih Warna</option>
                                         
                                         <?php foreach($warna as $I):?>
+                                             <option value="<?=$I['id']?>" > <?=  $I['nama']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                <select id="id_satuan_0"  name="id_satuan_0" class="form-control pilih_satuan">
+                                        <option value="0">Pilih Satuan</option>
+                                        
+                                        <?php foreach($satuan as $I):?>
                                              <option value="<?=$I['id']?>" > <?=  $I['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>
@@ -93,6 +103,14 @@
                                         <option value="0">Pilih Warna</option>
                                         
                                         <?php foreach($warna as $I):?>
+                                             <option value="<?=$I['id']?>" > <?=  $I['nama']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <select id="id_satuan_1"  name="id_satuan_1" class="form-control pilih_satuan">
+                                        <option value="0">Pilih Satuan</option>
+                                        
+                                        <?php foreach($satuan as $I):?>
                                              <option value="<?=$I['id']?>" > <?=  $I['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>

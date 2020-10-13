@@ -77,8 +77,18 @@ class Permintaan_model extends CI_Model {
     public function getKain(){
         $this->db->select('mst_jenis.nama as kain,mst_jenis.code,mst_jenis.id');
         $this->db->from('mst_jenis');
-//           $this->db->join('mst_jenis','mst_kain.kain_id = mst_jenis.id');
-//           $this->db->join('mst_warna','mst_kain.warna_id = mst_warna.id');
+        $query = $this->db->get();
+        $resVal = "";
+        if ($query->num_rows() > 0) {
+            $resVal = $query->result_array();
+        } else {
+            $resVal = false;
+        }
+        return $resVal;
+    }
+    public function getSatuan(){
+        $this->db->select('*');
+        $this->db->from('mst_satuan');
         $query = $this->db->get();
         $resVal = "";
         if ($query->num_rows() > 0) {
@@ -217,9 +227,6 @@ class Permintaan_model extends CI_Model {
     }
      public function getDetail($id) {
         $this->db->where('tr_permintaan.id', $id);
-//        $this->db->join('mst_supplier','mst_supplier.id = tr_pemesanan.supplier_id','left');
-//        $this->db->join('tr_pemesanan_detail','tr_pemesanan.id = tr_pemesanan_detail.id_pemesanan','left');
-      
         $query = $this->db->get($this->table, 1);
         $resVal = "";
         if ($query->num_rows() > 0) {

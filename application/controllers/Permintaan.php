@@ -160,6 +160,7 @@ class Permintaan extends MY_Controller {
         $dt['customer'] = $this->supplier_model->getCust();
         $dt['kain'] = $this->Permintaan_model->getKain();
         $dt['warna'] = $this->Permintaan_model->getWarna();
+        $dt['satuan'] = $this->Permintaan_model->getSatuan();
         $dt['data'] = $data;
         $dt['base_url'] = $this->base_url;
         if(is_numeric($id)){
@@ -228,11 +229,10 @@ class Permintaan extends MY_Controller {
                    // save detail barang
                    $index_row = isset($_POST["index_row"]) ? trim($_POST["index_row"]) : '';
                   
-                   for($i=1; $i <= $index_row;$i++){
-                         
+                   for($i=1; $i <= $index_row;$i++){                         
                         $id_barang = isset($_POST["id_barang_".$i]) ? trim($_POST["id_barang_".$i]) : '';
                         $id_warna = isset($_POST["id_warna_".$i]) ? trim($_POST["id_warna_".$i]) : '';
-                        
+                        $id_satuan = isset($_POST["id_satuan_".$i]) ? trim($_POST["id_satuan_".$i]) : '';                        
                         $harga = isset($_POST["harga_".$i]) ? trim($_POST["harga_".$i]) : '';
                         $jumlah = isset($_POST["jumlah_".$i]) ? trim($_POST["jumlah_".$i]) : '';
                         $biaya = isset($_POST["biaya_".$i]) ? trim($_POST["biaya_".$i]) : '';
@@ -242,6 +242,7 @@ class Permintaan extends MY_Controller {
                                 "permintaan_id" => $id,
                                 "id_kain" => $id_barang,
                                 "id_warna" => $id_warna,
+                                "id_satuan" => $id_satuan,
                                 "jumlah" => $jumlah,
                                 "harga" =>$jumlah  *  filterHarga($harga),
                                 "biaya_simpan" => filterHarga($biaya),
@@ -270,11 +271,10 @@ class Permintaan extends MY_Controller {
                 if ($res['status'] == true) {
                      // save detail barang
                     $index_row = isset($_POST["index_row"]) ? trim($_POST["index_row"]) : '';
-                    for($i=1; $i <= $index_row;$i++){
-                         
+                    for($i=1; $i <= $index_row;$i++){                         
                         $id_barang = isset($_POST["id_barang_".$i]) ? trim($_POST["id_barang_".$i]) : '';
                         $id_warna = isset($_POST["id_warna_".$i]) ? trim($_POST["id_warna_".$i]) : '';
-                        
+                        $id_satuan = isset($_POST["id_satuan_".$i]) ? trim($_POST["id_satuan_".$i]) : '';                         
                         $harga = isset($_POST["harga_".$i]) ? trim($_POST["harga_".$i]) : '';
                         $jumlah = isset($_POST["jumlah_".$i]) ? trim($_POST["jumlah_".$i]) : '';
                         $biaya = isset($_POST["biaya_".$i]) ? trim($_POST["biaya_".$i]) : '';
@@ -283,6 +283,7 @@ class Permintaan extends MY_Controller {
                                 "permintaan_id" => $res['id'],
                                 "id_kain" => $id_barang,
                                 "id_warna" => $id_warna,
+                                "id_satuan" => $id_satuan,
                                 "jumlah" => $jumlah,
                                 "harga" => $jumlah  * filterHarga($harga),
                                 "biaya_simpan" => filterHarga($biaya),

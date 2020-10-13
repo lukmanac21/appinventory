@@ -32,7 +32,7 @@ class Laporan_model extends CI_Model {
         return $data->result();
     }
     public function getKain(){
-        $this->db->select('mst_jenis.nama as kain,mst_jenis.code,mst_jenis.id');
+        $this->db->select('mst_jenis.nama,mst_jenis.code,mst_kain.id');
         $this->db->from('mst_jenis');
            $this->db->join('mst_kain','mst_kain.kain_id = mst_jenis.id');
         $query = $this->db->get();
@@ -101,16 +101,10 @@ class Laporan_model extends CI_Model {
         return $resVal;
     }
 
-   public function getDataTrans($kode = "", $nomor = "",$isi_ringkasan="", $tanggal=""){
+   public function getDataTrans($id_kain = "", $tanggal=""){
        
-        if($kode !=""){
-              $this->db->like("kode" , $kode);           
-        } 
-        if($nomor !=""){
-              $this->db->like("nomor" , $nomor);           
-        }           
-         if($isi_ringkasan !=""){
-              $this->db->like("isi" , $isi_ringkasan);           
+        if($id_kain !=""){
+              $this->db->like("id" , $id_kain);           
         } 
         if($tanggal !=""){
                 $this->db->where("tgl1 BETWEEN '".$tanggal['start']."' AND '".$tanggal['end']."'");

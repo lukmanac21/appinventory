@@ -1,4 +1,4 @@
-var base_url_tag = global_url+'LaporanOprasi/';
+var base_url_tag = global_url+'laporan/';
 
 $(function() {
     if ($('#myModal').length > 0) {
@@ -22,19 +22,19 @@ $(function() {
     });
     
     $("#menu_laporan").addClass("active");
-    $("#menu_laporan_stock").addClass("active");
+    $("#menu_add_laporan").addClass("active");
     
     var dataGrid = $('#datatable').dataTable({
         processing : true,
         serverSide : true,
         searching : false,
         ajax : {
-            url : base_url_tag + 'getDataOprasi/',
+            url : base_url_tag + 'getData/',
             type : 'post',
             data:  function(d){
                 d.date1 = $('#date1').val();
                 d.date2 = $('#date2').val();
-                d.status_pembayaran = $('#status_pembayaran').val();
+                d.id_kain = $('#id_kain').val();
             }
         },
         columns : [

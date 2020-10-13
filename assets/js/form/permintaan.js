@@ -20,12 +20,14 @@ $(function() {
          var date1 = $( "#date1" ).val();
          
          if(date1 != false){
+            $(".pilih_satuan").removeAttr("disabled");
             $(".pilih_warna").removeAttr("disabled");
             $(".pilih_barang").removeAttr("disabled");
             $("#add_barang").css("display","inline");
             resetBarang();
          }
          else{
+            $(".pilih_satuan").attr("disabled","disabled");
             $(".pilih_warna").attr("disabled","disabled");
             $(".pilih_barang").attr("disabled","disabled");
             $("#add_barang").css("display","none");
@@ -92,6 +94,7 @@ function addBarang(){
     htmlRow = htmlRow.replace('style="display: none;"', '');
     htmlRow = htmlRow.split("id_barang_0").join("id_barang_"+idRow);     
     htmlRow = htmlRow.split("id_warna_0").join("id_warna_"+idRow);
+    htmlRow = htmlRow.split("id_satuan_0").join("id_satuan_"+idRow);
     htmlRow = htmlRow.split("jumlah_0").join("jumlah_"+idRow);
     htmlRow = htmlRow.split("harga_0").join("harga_"+idRow);
     htmlRow = htmlRow.split("total_0").join("total_"+idRow);
@@ -117,6 +120,7 @@ function resetBarang(){
     }
     $("#id_barang_1").val("0");
     $("#id_warna_1").val("0");
+    $("#id_satuan_1").val("0");
     $("#jumlah_1").val("0");
     $("#harga_1").val("0");
     $("#total_1").val("0");

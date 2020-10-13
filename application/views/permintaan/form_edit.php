@@ -29,6 +29,9 @@
                             <tr>
                                 <th style="width:30%">Nama Barang</th>
                                 <th>Jumlah</th>
+                                
+                                <th>Warna</th>
+                                <th>Satuan</th>
                                 <th>Biaya Simpan</th>
                                 <th>Harga Satuan</th>
                                 <th>Total</th>
@@ -41,6 +44,25 @@
                                         
                                         <?php foreach($kain as $I):?>
                                              <option value="<?=$I['id']?>" > <?= $I['article'] .'-'. $I['kain']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <!--input type="text" value="" class="form-control" placeholder="Wa" name="ukuran_0" id="ukuran_0" readonly="readonly"-->
+                                    <select id="id_warna_0"  name="id_warna_0" class="form-control pilih_warna">
+                                        <option value="0">Pilih Warna</option>
+                                        
+                                        <?php foreach($warna as $I):?>
+                                             <option value="<?=$I['id']?>" > <?=  $I['nama']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                <select id="id_satuan_0"  name="id_satuan_0" class="form-control pilih_satuan">
+                                        <option value="0">Pilih Satuan</option>
+                                        
+                                        <?php foreach($satuan as $I):?>
+                                             <option value="<?=$I['id']?>" > <?=  $I['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </td>
@@ -71,6 +93,25 @@
                                         <option value="0">Pilih Barang</option>
                                        <?php foreach($kain as $I):?>
                                         <option value="<?=$I['id']?>" <?= $I['id']==$b['id_kain'] ? 'selected' :'';?>><b> <?= $I['article'].' - '.$I['kain']?></b></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <!--input type="text" value="" class="form-control" placeholder="Wa" name="ukuran_0" id="ukuran_0" readonly="readonly"-->
+                                    <select id="id_warna_<?= $no?>"  name="id_warna_<?= $no?>" class="form-control pilih_warna">
+                                        <option value="0">Pilih Warna</option>
+                                        
+                                        <?php foreach($warna as $I):?>
+                                             <option value="<?=$I['id']?>" <?= $I['id']==$b['id_warna'] ? 'selected' :'';?>> <?=  $I['nama']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                <select id="id_satuan_<?= $no?>"  name="id_satuan_<?= $no?>" class="form-control pilih_satuan">
+                                        <option value="0">Pilih Satuan</option>
+                                        
+                                        <?php foreach($satuan as $I):?>
+                                             <option value="<?=$I['id']?>" <?= $I['id']==$b['id_satuan'] ? 'selected' :'';?>> <?=  $I['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </td>

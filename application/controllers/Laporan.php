@@ -35,7 +35,7 @@ class Laporan extends MY_Controller {
             "description" => $this->meta_desc,
             "container" => $this->_home(),
             "custom_js" => array(
-                ASSETS_JS_URL . "form/laporanoprasi.js",
+                ASSETS_JS_URL . "form/laporan.js",
                 ASSETS_URL . "plugins/select2/select2.full.min.js", 
                 ASSETS_URL . "plugins/datatables/jquery.dataTables.min.js",
                 ASSETS_URL . "plugins/datatables/dataTables.bootstrap.min.js",
@@ -95,16 +95,14 @@ class Laporan extends MY_Controller {
         $post = $this->input->post();
 //        echoPre($post);exit;
         $dtStart = $post['date1'];
+        $id_kain = $post['id_kain'];
         $dtEnd = $post['date2'];
         $tgl = array();
         if(!empty($dtStart) || ($dtEnd)){
             $tgl['start'] = $dtStart.' 00:00:00';
             $tgl['end'] = $dtEnd.' 23:59:59';
         }
-         $kode = $post['kode'];
-        $nomor_surat = $post['nomor_surat'];
-        $isi_ringkasan = $post['isi_ringkasan'];
-        $dataTransaksi = $this->laporan_model->getDataTrans($kode, $nomor_surat, $isi_ringkasan, $tgl);
+        $dataTransaksi = $this->laporan_model->getDataTrans($id_kain,$tgl);
         
         if(!empty($dataTransaksi)){
         $response = $this->datatables->collection($dataTransaksi)
