@@ -102,14 +102,23 @@ class Laporan_model extends CI_Model {
     }
 
    public function getDataTrans($id_kain = "", $tanggal=""){
-       
+    $this->db->select("
+            mst_kain.id,
+            mst_jenis.nama as kain,
+            mst_warna.nama as warna,
+            mst_satuan.nama as satuan,
+            mst_kain.stok,
+        ");
+        $this->db->join("mst_jenis" , "mst_jenis.id = mst_kain.kain_id","left");
+        $this->db->join("mst_warna" , "mst_warna.id = mst_kain.warna_id","left");
+        $this->db->join("mst_satuan" , "mst_satuan.id = mst_kain.satuan_id","left");
         if($id_kain !=""){
-              $this->db->like("id" , $id_kain);           
+              $this->db->like("mst_kain.id" , $id_kain);           
         } 
         if($tanggal !=""){
-                $this->db->where("tgl1 BETWEEN '".$tanggal['start']."' AND '".$tanggal['end']."'");
+                $this->db->where("mst_kain.createddate BETWEEN '".$tanggal['start']."' AND '".$tanggal['end']."'");
         }
-        $this->db->order_by("tgl ASC"); 
+        $this->db->order_by("mst_kain.createddate ASC"); 
         return $this->db->get_compiled_select($this->table);
     }
    

@@ -38,13 +38,10 @@ $(function() {
             }
         },
         columns : [
-            {data : 'nosep'},
-            {data : 'pasien'},
-            {data : 'tanggal'},
-            {data : 'jenis'},
-            {data : 'dokter'},
-            {data : 'status'},
-            {data : 'notes'},
+            {data : 'kain'},
+            {data : 'warna'},
+            {data : 'satuan'},
+            {data : 'stok'},
             
         ]         
     });

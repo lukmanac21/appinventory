@@ -75,25 +75,23 @@
                 <div class="box-header">
                     <h3 class="box-title">Laporan Data Surat </h3>
 
-                    <form action="<?php echo $base_url; ?>export" method="post" >
+                    <!--form action="<?php echo $base_url; ?>export" method="post" >
                         <button type="submit" class="btn btn-primary pull-right " id="export-xls">Backup database</button>
                         <input type="hidden" name="date1" value="<?= $post ?>" />
                         <input type="hidden" name="date2" value="<?= $post ?>" />
                         <input type="hidden" name="nomor_surat" value="<?= $post ?>" />
                         <input type="hidden" name="kode" value="<?= $post ?>" />
                         <input type="hidden" name="isi_ringkasan" value="<?= $post ?>" />
-                    </form>
+                    </form-->
                 </div>
                 <div class="box-body table-responsive ">
                     <table class="table table-hover table-striped" id="datatable">
                         <thead>
                             <tr>
-                                <th>Nomor</th>
-                                <th>Kode</th>
-                                <th>Dari</th>
-                                <th>Kepada</th>
-                                <th>Tanggal</th>
-                                <th>Isi Ringkasan</th>
+                                <th>Kain</th>
+                                <th>Warna</th>
+                                <th>Satuan</th>
+                                <th>Stok</th>
                             </tr>
                         </thead>
                         <tbody>

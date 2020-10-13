@@ -267,7 +267,7 @@ class MY_Controller extends CI_Controller {
             ),
             "laporan_sub" => array(
                 "add_laporan" => array(
-                    "class" => "glyphicon glyphicon-edit text-purple",
+                    "class" => "glyphicon glyphicon-edit text-blue",
                     "url" => "laporan/",
                     "desc" => "Laporan Data Kain",
                 ),
