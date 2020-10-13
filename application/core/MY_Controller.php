@@ -174,7 +174,7 @@ class MY_Controller extends CI_Controller {
                 "sub_menu" => "pengguna_sub"
             ),
             "laporan" =>
-            array("class" => "glyphicon glyphicon-user text-purple",
+            array("class" => "glyphicon glyphicon-stats text-purple",
                 "desc" => "Laporan",
                 "main_url" => $this->base_url_site . "",
                 "sub_menu" => "laporan_sub"
@@ -268,7 +268,7 @@ class MY_Controller extends CI_Controller {
             "laporan_sub" => array(
                 "add_laporan" => array(
                     "class" => "glyphicon glyphicon-edit text-purple",
-                    "url" => "laporam/",
+                    "url" => "laporan/",
                     "desc" => "Laporan Data Kain",
                 ),
                
