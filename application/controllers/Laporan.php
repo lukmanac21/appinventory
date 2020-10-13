@@ -9,8 +9,8 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 // End load library phpspreadsheet
 class Laporan extends MY_Controller {
 
-    var $meta_title = "APPMOLINDO | Laporan";
-    var $meta_desc = "APPMOLINDO";
+    var $meta_title = "APPINVENTORY | Laporan";
+    var $meta_desc = "APPINVENTORY";
     var $main_title = "Laporan";
     var $base_url = "";
     var $upload_dir = "";
