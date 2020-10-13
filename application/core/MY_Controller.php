@@ -173,6 +173,12 @@ class MY_Controller extends CI_Controller {
                 "main_url" => $this->base_url_site . "",
                 "sub_menu" => "pengguna_sub"
             ),
+            "laporan" =>
+            array("class" => "glyphicon glyphicon-user text-purple",
+                "desc" => "Laporan",
+                "main_url" => $this->base_url_site . "",
+                "sub_menu" => "laporan_sub"
+            ),
              "perhitungan" =>
             array("class" => "glyphicon glyphicon-time text-red",
                 "desc" => "Perhitungan",
@@ -258,6 +264,14 @@ class MY_Controller extends CI_Controller {
                     "url" => "level/",
                     "desc" => "Level",
                 ),
+            ),
+            "laporan_sub" => array(
+                "add_laporan" => array(
+                    "class" => "glyphicon glyphicon-edit text-purple",
+                    "url" => "laporam/",
+                    "desc" => "Laporan Data Kain",
+                ),
+               
             ),
         );
 
