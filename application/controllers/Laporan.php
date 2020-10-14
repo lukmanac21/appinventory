@@ -99,15 +99,23 @@ class Laporan extends MY_Controller {
         $id_kain = $post['id_kain'];
         $id_warna = $post['id_warna'];
         $id_satuan = $post['id_satuan'];
-        $dataTransaksi = $this->laporan_model->getDataTrans($id_kain ,$id_warna ,$id_satuan);
-      //  echopre($this->db->last_query());
-        if(!empty($dataTransaksi)){
-        $response = $this->datatables->collection($dataTransaksi)
-            ->render();
-        echo json_encode($response);
+        $list = $this->laporan_model->get_datatables($id_kain ,$id_warna ,$id_satuan);
+        $data = array();
+        foreach ($list as $dt) {
+            $row = array();
+            $row[] = $dt->nama;
+            $row[] = $dt->warna;
+            $row[] = $dt->satuan;
+            $row[] = $dt->stok;
+            $data[] = $row;
         }
+        $output = array(
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
     }
-   public function export(){
+  /* public function export(){
 //       $status_pembayaran = isset($_POST["status"]) ? $_POST["status"] : "";
         $dtStart =  isset($_POST["date1"]) ? $_POST["date1"] : "";
         $dtEnd =  isset($_POST["date2"]) ? $_POST["date2"] : "";
@@ -166,6 +174,6 @@ class Laporan extends MY_Controller {
 
         $objWriter->save('php://output');
         exit();
-    }
+    }*/
 
 }

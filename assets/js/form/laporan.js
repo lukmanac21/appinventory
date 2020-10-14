@@ -39,13 +39,12 @@ $(function() {
                 d.id_satuan = $('#id_satuan').val();
             }
         },
-        columns : [
-            {data : 'kain'},
-            {data : 'warna'},
-            {data : 'satuan'},
-            {data : 'stok'},
-            
-        ]         
+        columnDefs: [
+            { 
+                targets : [ -1 ], //last column
+                orderable: false, //set not orderable
+            },
+            ], 
     });
 
     $(document).on('click', '#export-xls', function(){

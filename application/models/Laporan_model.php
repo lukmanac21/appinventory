@@ -12,25 +12,6 @@ class Laporan_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getDataIndex($offset = 0, $limit = 10, $status_pembayaran = "", $tanggal = array()) {
-       
-            if ($status_pembayaran != "") {
-                $this->db->where($this->table.'.status', $status_pembayaran);
-            }
-          
-            if (!empty($tanggal) && isset($tanggal['start']) && isset($tanggal['end'])) {
-                $this->db->where($this->table.'.tgl BETWEEN "' . $tanggal['start'] . '" AND "' .$tanggal['end'].'"');
-           }
-        $this->db->from($this->table);
-        if($limit != 'all'){
-            $this->db->limit($limit);
-        
-        }
-        $this->db->offset($offset);
-        $this->db->order_by($this->table . ".tgl ASC");
-        $data = $this->db->get();
-        return $data->result();
-    }
     public function getKain(){
         $this->db->select('mst_jenis.nama,mst_jenis.code,mst_jenis.id,');
         $this->db->from('mst_jenis');
@@ -68,88 +49,34 @@ class Laporan_model extends CI_Model {
         }
         return $resVal;
     }
-    public function getDataIndexexport($tanggal = array()) {
-           
-            if (!empty($tanggal) && isset($tanggal['start']) && isset($tanggal['end'])) {
-                 $this->db->where("tgl1 BETWEEN '".$tanggal['start']."' AND '".$tanggal['end']."'");
-            }
-            
-        $this->db->select("*");
-        $this->db->from($this->table);
-        $this->db->order_by($this->table . ".tgl1 DESC");
-        $data = $this->db->get();
-        return $data;
-    }
-    public function getCountDataIndexexport( $status_pembayaran = "",$tanggal = array(), $id_agen = "") {
-        
-         if(!empty($id_agen)){
-                 $this->db->where('id_agen', $id_agen);
-               
-        }else {
-           
-            if ($status_pembayaran != "") {
-                $this->db->where('status_pembayaran', $status_pembayaran);
-            }
-            
-            if (!empty($tanggal) && isset($tanggal['start']) && isset($tanggal['end'])) {
-                $this->db->where('tanggal_transaksi BETWEEN "' . $tanggal['start'] . '" AND "' .$tanggal['end'].'"');
-         
-            }
-        }
-        $this->db->select($this->table . '.*, master_agen.nama_agen ');
-        $this->db->join('master_agen','master_agen.id_agen = '.$this->table.'.id_agen');
-        $this->db->from($this->table);
-        $data = $this->db->count_all_results();
-        return $data;
-    }
-    public function getBarangDetail($id) {
-        
-        $this->db->select( $this->jointTable .' .*, master_barang.*');
-        $this->db->from( $this->jointTable);
-        $this->db->join('master_barang', 'master_barang.id_barang = '.$this->jointTable.'.id_barang');
-        if(is_array($id)){
-            $this->db->where_in($this->jointTable.".id_trans_barang", $id);
-            $this->db->order_by($this->jointTable.".id_trans_barang", "asc");
-        }
-        else{
-            $this->db->where($this->jointTable.".id_trans_barang", $id);
-        }
-        
-        $query = $this->db->get();
-        $resVal = "";
-        if ($query->num_rows() > 0) {
-            $resVal = $query->result_array();
-        } else {
-            $resVal = false;
-        }
-        return $resVal;
-    }
 
-   public function getDataTrans($id_kain = "", $id_warna="", $id_satuan="" ){
-   
-    $this->db->select("
-            mst_kain.id,            
+    private function _get_datatables_query() {
+        $this->db->select('mst_kain.stok,
+            mst_kain.id,
             mst_jenis.nama as kain,
             mst_warna.nama as warna,
-            mst_satuan.nama as satuan,
-            mst_kain.stok,
-        ");
-        
-        $this->db->join("mst_jenis" , "mst_jenis.id = mst_kain.kain_id",'left');
-        $this->db->join("mst_warna" , "mst_warna.id = mst_kain.warna_id",'left');
-        $this->db->join("mst_satuan" , "mst_satuan.id = mst_kain.satuan_id",'left');
-        if($id_kain !=""){
-            $this->db->where("mst_kain.kain_id" , $id_kain);           
-        } 
-        if($id_warna !=""){
-            $this->db->where("mst_kain.warna_id" , $id_warna);           
-        } 
-        if($id_satuan !=""){
-            $this->db->where("mst_kain.satuan_id" , $id_satuan);           
-        } 
-        $this->db->order_by("mst_kain.id ASC"); 
-        return $this->db->get_compiled_select($this->table);
+            mst_satuan.nama as satuan');
+        $this->db->from('mst_kain');
+        $this->db->join('mst_satuan', 'mst_kain.satuan_id = mst_satuan.id');
+        $this->db->join('mst_jenis', 'mst_kain.kain_id = mst_jenis.id');
+        $this->db->join('mst_warna','mst_kain.warna_id = mst_warna.id');
        
+    }
+    function get_datatables($id_kain="",$id_warna="",$id_satuan="") {
+        $this->_get_datatables_query();
+        $this->db->order_by('mst_kain.id ASC');
+        if($id_kain !=""){
+                $this->db->where("mst_kain.kain_id",$id_kain);
+        }
+        
+        if($id_warna !=""){
+                $this->db->where("mst_kain.warna_id ",$id_warna);
+        }
+        if ($id_satuan != "") {
+            $this->db->where("mst_kain.satuan_id", $id_satuan);
+        }
+        $query = $this->db->get();
+        return $query->result();
     }
    
 }
