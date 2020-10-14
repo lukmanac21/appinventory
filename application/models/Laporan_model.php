@@ -125,7 +125,7 @@ class Laporan_model extends CI_Model {
         return $resVal;
     }
 
-   public function getDataTrans($id_kain = "", $id_warna="",$id_satuan="" ){
+   public function getDataTrans($id_kain = "", $id_warna="", $id_satuan="" ){
    
     $this->db->select("
             mst_kain.id,            
@@ -148,7 +148,7 @@ class Laporan_model extends CI_Model {
             $this->db->like("mst_kain.satuan_id" , $id_satuan);           
         } 
         return $this->db->get_compiled_select($this->table);
-        echopre($this->db->last_query());
+       
     }
    
 }
