@@ -103,7 +103,7 @@ class Laporan extends MY_Controller {
         $data = array();
         foreach ($list as $dt) {
             $row = array();
-            $row[] = $dt->nama;
+            $row[] = $dt->kain;
             $row[] = $dt->warna;
             $row[] = $dt->satuan;
             $row[] = $dt->stok;
