@@ -126,7 +126,18 @@ class Laporan_model extends CI_Model {
     }
 
    public function getDataTrans($id_kain = "", $id_warna="",$id_satuan="" ){
-   
+    echopre($id_kain);
+    echopre($id_warna);
+    echopre($id_satuan);
+    
+    exit;
+    $this->db->select("
+            mst_kain.id,            
+            mst_jenis.nama as kain,
+            mst_warna.nama as warna,
+            mst_satuan.nama as satuan,
+            mst_kain.stok,
+        ");
         if($id_kain !=""){
             $this->db->like("mst_kain.kain_id" , $id_kain);           
         } 
@@ -136,13 +147,6 @@ class Laporan_model extends CI_Model {
         if($id_satuan !=""){
             $this->db->like("mst_kain.satuan_id" , $id_satuan);           
         } 
-        $this->db->select("
-            mst_kain.id,            
-            mst_jenis.nama as kain,
-            mst_warna.nama as warna,
-            mst_satuan.nama as satuan,
-            mst_kain.stok,
-        ");
         $this->db->join("mst_jenis" , "mst_jenis.id = mst_kain.kain_id","left");
         $this->db->join("mst_warna" , "mst_warna.id = mst_kain.warna_id","left");
         $this->db->join("mst_satuan" , "mst_satuan.id = mst_kain.satuan_id","left");
