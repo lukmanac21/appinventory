@@ -95,6 +95,7 @@ class Laporan extends MY_Controller {
         $t = $this->isAjaxPost();     
         $this->load->library('datatables');
         $post = $this->input->post();
+        echopre($post);exit;
        // $dtStart = $post['date1'];
         $id_kain = $post['id_kain'];
         $id_warna = $post['id_warna'];
@@ -106,7 +107,7 @@ class Laporan extends MY_Controller {
             $tgl['end'] = $dtEnd.' 23:59:59';
         }*/
         $dataTransaksi = $this->laporan_model->getDataTrans($id_kain,$id_warna,$id_satuan);
-        echopre($this->db->last_query());exit;
+        
         if(!empty($dataTransaksi)){
         $response = $this->datatables->collection($dataTransaksi)
             ->render();
