@@ -95,11 +95,12 @@ class Laporan extends MY_Controller {
         $t = $this->isAjaxPost();     
         $this->load->library('datatables');
         
-        $dtStart = $post['date1'];
+        $post = $this->input->post();
         $id_kain = $post['id_kain'];
         $id_warna = $post['id_warna'];
         $id_satuan = $post['id_satuan'];
-        $post = $this->input->post();
+        
+        $dtStart = $post['date1'];
         $dtEnd = $post['date2'];
         $tgl = array();
         if(!empty($dtStart) || ($dtEnd)){
