@@ -139,13 +139,13 @@ class Laporan_model extends CI_Model {
         $this->db->join("mst_warna" , "mst_warna.id = mst_kain.warna_id");
         $this->db->join("mst_satuan" , "mst_satuan.id = mst_kain.satuan_id");
         if($id_kain !=""){
-            $this->db->like("mst_kain.kain_id" , $id_kain);           
+            $this->db->where("mst_kain.kain_id" , $id_kain);           
         } 
         if($id_warna !=""){
-            $this->db->like("mst_kain.warna_id" , $id_warna);           
+            $this->db->where("mst_kain.warna_id" , $id_warna);           
         } 
         if($id_satuan !=""){
-            $this->db->like("mst_kain.satuan_id" , $id_satuan);           
+            $this->db->where("mst_kain.satuan_id" , $id_satuan);           
         } 
         return $this->db->get_compiled_select($this->table);
        
