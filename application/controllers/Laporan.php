@@ -106,7 +106,7 @@ class Laporan extends MY_Controller {
             $tgl['end'] = $dtEnd.' 23:59:59';
         }*/
         $dataTransaksi = $this->laporan_model->getDataTrans($id_kain,$id_warna,$id_satuan);
-        
+        echopre($this->db->last_query());exit;
         if(!empty($dataTransaksi)){
         $response = $this->datatables->collection($dataTransaksi)
             ->render();
