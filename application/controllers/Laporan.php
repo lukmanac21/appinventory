@@ -99,7 +99,10 @@ class Laporan extends MY_Controller {
         $id_kain = $post['id_kain'];
         $id_warna = $post['id_warna'];
         $id_satuan = $post['id_satuan'];
-        $list = $this->laporan_model->get_datatables($id_kain ,$id_warna ,$id_satuan);
+        $list = $this->laporan_model->get_datatables($id_kain,$id_warna,$id_satuan); 
+        echopre($this->db->last_query());
+        echopre($list);
+        exit;
         $data = array();
         foreach ($list as $dt) {
             $row = array();

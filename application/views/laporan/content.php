@@ -116,8 +116,6 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="box-footer clearfix">
-                </div>
             </div>
         </div> 
     </div>
