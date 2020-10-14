@@ -81,6 +81,8 @@ class Laporan extends MY_Controller {
         $dt["breadcrumbs"] = $this->setBreadcrumbs($arrBreadcrumbs);
         $dt["title"] = "Laporan";
         $dt['kain'] = $this->laporan_model->getKain();
+        $dt['warna'] = $this->laporan_model->getWarna();
+        $dt['satuan'] = $this->laporan_model->getSatuan();
         $dt['isi_ringkasan'] = $isi_ringkasan;
         $dt['kode'] = $kode;
         $dt['nomor_surat'] = $nomor_surat;
@@ -93,16 +95,17 @@ class Laporan extends MY_Controller {
         $t = $this->isAjaxPost();     
         $this->load->library('datatables');
         $post = $this->input->post();
-//        echoPre($post);exit;
         $dtStart = $post['date1'];
         $id_kain = $post['id_kain'];
+        $id_warna = $post['id_warna'];
+        $id_satuan = $post['id_satuan'];
         $dtEnd = $post['date2'];
         $tgl = array();
         if(!empty($dtStart) || ($dtEnd)){
             $tgl['start'] = $dtStart.' 00:00:00';
             $tgl['end'] = $dtEnd.' 23:59:59';
         }
-        $dataTransaksi = $this->laporan_model->getDataTrans($id_kain,$tgl);
+        $dataTransaksi = $this->laporan_model->getDataTrans($id_kain,$id_satuan,$id_warna,$id_satuan,$tgl);
         
         if(!empty($dataTransaksi)){
         $response = $this->datatables->collection($dataTransaksi)

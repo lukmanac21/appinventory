@@ -26,17 +26,35 @@
                                         <option value="0">Pilih Data Kain</option>
                                         
                                         <?php foreach($kain as $row):?>
-                                             <option value="<?=$row['id']?>" > <?=  $row['nama']?></option>
+                                             <option value="<?=$row['id']?>" > <?=  $row['code'].' - '.$row['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     </div>
                                 </div>
-                                <!--div class="form-group">
-                                    <label class="col-sm-3 control-label">Kode</label>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Warna</label>
                                     <div class="col-sm-7">
-                                        <input type="text" placeholder="Ex: Dir/Sad.01/21/X.16" class="form-control pull-right" name="kode" id="kode">
+                                    <select id="id_warna"  name="id_warna" class="form-control select2">
+                                        <option value="0">Pilih Kategori Warna</option>
+                                        
+                                        <?php foreach($kain as $row):?>
+                                             <option value="<?=$row['id']?>" > <?= $row['nama']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                     </div>
-                                </div-->
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Satuan</label>
+                                    <div class="col-sm-7">
+                                    <select id="id_satuan"  name="id_satuan" class="form-control select2">
+                                        <option value="0">Pilih Kategori Satuan</option>
+                                        
+                                        <?php foreach($kain as $row):?>
+                                             <option value="<?=$row['id']?>" > <?= $row['nama']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    </div>
+                                </div>
                                 
                                 <div class="form-group">
                                     <label class="control-label form-label col-sm-3">Tanggal</label>

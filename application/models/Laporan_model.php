@@ -32,9 +32,33 @@ class Laporan_model extends CI_Model {
         return $data->result();
     }
     public function getKain(){
-        $this->db->select('mst_jenis.nama,mst_jenis.code,mst_kain.id');
+        $this->db->select('mst_jenis.nama,mst_jenis.code,mst_jenis.id,');
         $this->db->from('mst_jenis');
-           $this->db->join('mst_kain','mst_kain.kain_id = mst_jenis.id');
+          // $this->db->join('mst_kain','mst_kain.kain_id = mst_jenis.id');
+        $query = $this->db->get();
+        $resVal = "";
+        if ($query->num_rows() > 0) {
+            $resVal = $query->result_array();
+        } else {
+            $resVal = false;
+        }
+        return $resVal;
+    }
+    public function getWarna(){
+        $this->db->select('*');
+        $this->db->from('mst_warna');
+        $query = $this->db->get();
+        $resVal = "";
+        if ($query->num_rows() > 0) {
+            $resVal = $query->result_array();
+        } else {
+            $resVal = false;
+        }
+        return $resVal;
+    }
+    public function getSatuan(){
+        $this->db->select('*');
+        $this->db->from('mst_satuan');
         $query = $this->db->get();
         $resVal = "";
         if ($query->num_rows() > 0) {
@@ -101,9 +125,9 @@ class Laporan_model extends CI_Model {
         return $resVal;
     }
 
-   public function getDataTrans($id_kain = "", $tanggal=""){
+   public function getDataTrans($id_kain = "", $id_warna="",$id_satuan="" , $tanggal=""){
     $this->db->select("
-            mst_kain.id,
+            mst_kain.id,            
             mst_jenis.nama as kain,
             mst_warna.nama as warna,
             mst_satuan.nama as satuan,
@@ -113,7 +137,13 @@ class Laporan_model extends CI_Model {
         $this->db->join("mst_warna" , "mst_warna.id = mst_kain.warna_id","left");
         $this->db->join("mst_satuan" , "mst_satuan.id = mst_kain.satuan_id","left");
         if($id_kain !=""){
-              $this->db->like("mst_kain.id" , $id_kain);           
+            $this->db->like("mst_jenis.kain_id" , $id_kain);           
+        } 
+        if($id_warna !=""){
+            $this->db->like("mst_warna.warna_id" , $id_warna);           
+        } 
+        if($id_satuan !=""){
+            $this->db->like("mst_satuan.satuan_id" , $id_satuan);           
         } 
         if($tanggal !=""){
                 $this->db->where("mst_kain.createddate BETWEEN '".$tanggal['start']."' AND '".$tanggal['end']."'");

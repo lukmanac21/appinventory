@@ -35,6 +35,8 @@ $(function() {
                 d.date1 = $('#date1').val();
                 d.date2 = $('#date2').val();
                 d.id_kain = $('#id_kain').val();
+                d.id_warna = $('#id_warna').val();
+                d.id_satuan = $('#id_satuan').val();
             }
         },
         columns : [
