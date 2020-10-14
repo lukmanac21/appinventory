@@ -137,13 +137,13 @@ class Laporan_model extends CI_Model {
         $this->db->join("mst_warna" , "mst_warna.id = mst_kain.warna_id","left");
         $this->db->join("mst_satuan" , "mst_satuan.id = mst_kain.satuan_id","left");
         if($id_kain !=""){
-            $this->db->like("mst_jenis.kain_id" , $id_kain);           
+            $this->db->like("mst_kain.kain_id" , $id_kain);           
         } 
         if($id_warna !=""){
-            $this->db->like("mst_warna.warna_id" , $id_warna);           
+            $this->db->like("mst_kain.warna_id" , $id_warna);           
         } 
         if($id_satuan !=""){
-            $this->db->like("mst_satuan.satuan_id" , $id_satuan);           
+            $this->db->like("mst_kain.satuan_id" , $id_satuan);           
         } 
         /*if($tanggal !=""){
                 $this->db->where("mst_kain.createddate BETWEEN '".$tanggal['start']."' AND '".$tanggal['end']."'");
