@@ -125,7 +125,7 @@ class Laporan_model extends CI_Model {
         return $resVal;
     }
 
-   public function getDataTrans($id_kain = "", $id_warna="", $id_satuan="", $tgl="" ){
+   public function getDataTrans($id_kain = "", $id_warna="", $id_satuan="" ){
    
     $this->db->select("
             mst_kain.id,            
@@ -147,9 +147,9 @@ class Laporan_model extends CI_Model {
         if($id_satuan !=""){
             $this->db->where("mst_kain.satuan_id" , $id_satuan);           
         } 
-        if($tgl !=""){
+      /*  if($tgl !=""){
             $this->db->where("mst_kain.createddate BETWEEN '".$tgl['start']."' AND '".$tgl['end']."'");
-    }
+    }*/
         $this->db->order_by("mst_kain.id ASC"); 
         return $this->db->get_compiled_select($this->table);
        

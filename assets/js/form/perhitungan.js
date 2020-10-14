@@ -43,8 +43,8 @@ function searchHitung(){
             url : base_url + 'getData/',
             type : 'post',
             data:  function(d){
-                d.date1 = $('#date1').val();
-                d.date2 = $('#date2').val();
+               // d.date1 = $('#date1').val();
+               // d.date2 = $('#date2').val();
                 d.barang = $('#barang').val();
                 d.lead_team = $('#lead_team').val();
             }

@@ -100,14 +100,14 @@ class Laporan extends MY_Controller {
         $id_warna = $post['id_warna'];
         $id_satuan = $post['id_satuan'];
         
-        $dtStart = $post['date1'];
+        /*$dtStart = $post['date1'];
         $dtEnd = $post['date2'];
         $tgl = array();
         if(!empty($dtStart) || ($dtEnd)){
             $tgl['start'] = $dtStart.' 00:00:00';
             $tgl['end'] = $dtEnd.' 23:59:59';
-        }
-        $dataTransaksi = $this->laporan_model->getDataTrans($id_kain,$id_satuan,$id_warna,$tgl);
+        }*/
+        $dataTransaksi = $this->laporan_model->getDataTrans($id_kain,$id_satuan,$id_warna);
         
         if(!empty($dataTransaksi)){
         $response = $this->datatables->collection($dataTransaksi)
