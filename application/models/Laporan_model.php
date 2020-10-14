@@ -147,7 +147,7 @@ class Laporan_model extends CI_Model {
         if($id_satuan !=""){
             $this->db->where("mst_kain.satuan_id" , $id_satuan);           
         } 
-        $this->db->order_by("mst_kain.idASC"); 
+        $this->db->order_by("mst_kain.id ASC"); 
         return $this->db->get_compiled_select($this->table);
        
     }
