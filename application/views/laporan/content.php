@@ -56,7 +56,7 @@
                                     </div>
                                 </div>
                                 
-                                <!--div class="form-group">
+                                <div class="form-group">
                                     <label class="control-label form-label col-sm-3">Tanggal</label>
                                     <div class="col-sm-3">
                                         <div class="input-group date">
@@ -77,7 +77,7 @@
                                             <input id="date2" class="form-control pull-left" value="dd-mm-yyyy" name="date2" id="date2" type="text">
                                         </div>
                                     </div>
-                                </div-->
+                                </div>
                                 <div class="box-footer">
                                     <button type="button" id="btnFilter"  class="btn btn-primary btn-flat"><span class="glyphicon glyphicon-search"></span> Cari</button>
                                 </div>
