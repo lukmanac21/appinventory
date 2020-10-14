@@ -115,7 +115,7 @@ class Laporan extends MY_Controller {
         echo json_encode($response);
         }
     }
-   public function export(){
+ /*  public function export(){
 //       $status_pembayaran = isset($_POST["status"]) ? $_POST["status"] : "";
         $dtStart =  isset($_POST["date1"]) ? $_POST["date1"] : "";
         $dtEnd =  isset($_POST["date2"]) ? $_POST["date2"] : "";
@@ -174,6 +174,6 @@ class Laporan extends MY_Controller {
 
         $objWriter->save('php://output');
         exit();
-    }
+    }*/
 
 }
