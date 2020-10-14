@@ -99,8 +99,8 @@ class Laporan extends MY_Controller {
         $id_kain = $post['id_kain'];
         $id_warna = $post['id_warna'];
         $id_satuan = $post['id_satuan'];
-        $dataTransaksi = $this->laporan_model->getDataTrans($id_kain, $id_warna, $id_satuan);
-        echopre($this->db->last_query());
+        $dataTransaksi = $this->laporan_model->getDataTrans($id_kain ,$id_warna ,$id_satuan);
+      //  echopre($this->db->last_query());
         if(!empty($dataTransaksi)){
         $response = $this->datatables->collection($dataTransaksi)
             ->render();
