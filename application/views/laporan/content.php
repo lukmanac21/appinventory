@@ -37,7 +37,7 @@
                                     <select id="id_warna"  name="id_warna" class="form-control select2">
                                         <option value="0">Pilih Kategori Warna</option>
                                         
-                                        <?php foreach($kain as $row):?>
+                                        <?php foreach($warna as $row):?>
                                              <option value="<?=$row['id']?>" > <?= $row['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>
@@ -49,7 +49,7 @@
                                     <select id="id_satuan"  name="id_satuan" class="form-control select2">
                                         <option value="0">Pilih Kategori Satuan</option>
                                         
-                                        <?php foreach($kain as $row):?>
+                                        <?php foreach($satuan as $row):?>
                                              <option value="<?=$row['id']?>" > <?= $row['nama']?></option>
                                         <?php endforeach; ?>
                                     </select>
