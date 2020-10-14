@@ -23,7 +23,7 @@
                                     <label class="col-sm-3 control-label">Kain</label>
                                     <div class="col-sm-7">
                                     <select id="id_kain"  name="id_kain" class="form-control select2">
-                                        <option value="0">Pilih Data Kain</option>
+                                        <option value="">Pilih Data Kain</option>
                                         
                                         <?php foreach($kain as $row):?>
                                              <option value="<?=$row['id']?>" > <?=  $row['code'].' - '.$row['nama']?></option>
@@ -35,7 +35,7 @@
                                     <label class="col-sm-3 control-label">Warna</label>
                                     <div class="col-sm-7">
                                     <select id="id_warna"  name="id_warna" class="form-control select2">
-                                        <option value="0">Pilih Kategori Warna</option>
+                                        <option value="">Pilih Kategori Warna</option>
                                         
                                         <?php foreach($warna as $row):?>
                                              <option value="<?=$row['id']?>" > <?= $row['nama']?></option>
@@ -47,7 +47,7 @@
                                     <label class="col-sm-3 control-label">Satuan</label>
                                     <div class="col-sm-7">
                                     <select id="id_satuan"  name="id_satuan" class="form-control select2">
-                                        <option value="0">Pilih Kategori Satuan</option>
+                                        <option value="">Pilih Kategori Satuan</option>
                                         
                                         <?php foreach($satuan as $row):?>
                                              <option value="<?=$row['id']?>" > <?= $row['nama']?></option>
