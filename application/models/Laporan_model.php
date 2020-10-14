@@ -134,6 +134,10 @@ class Laporan_model extends CI_Model {
             mst_satuan.nama as satuan,
             mst_kain.stok,
         ");
+        
+        $this->db->join("mst_jenis" , "mst_jenis.id = mst_kain.kain_id");
+        $this->db->join("mst_warna" , "mst_warna.id = mst_kain.warna_id");
+        $this->db->join("mst_satuan" , "mst_satuan.id = mst_kain.satuan_id");
         if($id_kain !=""){
             $this->db->like("mst_kain.kain_id" , $id_kain);           
         } 
@@ -143,10 +147,6 @@ class Laporan_model extends CI_Model {
         if($id_satuan !=""){
             $this->db->like("mst_kain.satuan_id" , $id_satuan);           
         } 
-        $this->db->join("mst_jenis" , "mst_jenis.id = mst_kain.kain_id");
-        $this->db->join("mst_warna" , "mst_warna.id = mst_kain.warna_id");
-        $this->db->join("mst_satuan" , "mst_satuan.id = mst_kain.satuan_id");
-        $this->db->order_by("mst_kain.createddate ASC"); 
         return $this->db->get_compiled_select($this->table);
         echopre($this->db->last_query());
     }
