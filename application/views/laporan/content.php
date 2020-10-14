@@ -63,7 +63,7 @@
                                             <div class="input-group-addon">
                                                 <i class="glyphicon glyphicon-calendar"></i>
                                             </div>
-                                            <input id="date1" class="form-control pull-right" value="<?= date('Y-m-d'); ?>" name="date1" id="date1" type="text">
+                                            <input id="date1" class="form-control pull-right" value="dd-mm-yyyy" name="date1" id="date1" type="text">
                                         </div>
                                     </div>
                                     <div class="col-sm-1 text-center">
@@ -74,7 +74,7 @@
                                             <div class="input-group-addon">
                                                 <i class="glyphicon glyphicon-calendar"></i>
                                             </div>
-                                            <input id="date2" class="form-control pull-left" value="<?= date('Y-m-d'); ?>" name="date2" id="date2" type="text">
+                                            <input id="date2" class="form-control pull-left" value="dd-mm-yyyy" name="date2" id="date2" type="text">
                                         </div>
                                     </div>
                                 </div>

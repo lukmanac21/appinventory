@@ -100,7 +100,6 @@ class Laporan extends MY_Controller {
         $id_warna = $post['id_warna'];
         $id_satuan = $post['id_satuan'];
         $dtEnd = $post['date2'];
-        $dtStart = $post['date1'];
         $tgl = array();
         if(!empty($dtStart) || ($dtEnd)){
             $tgl['start'] = $dtStart.' 00:00:00';
